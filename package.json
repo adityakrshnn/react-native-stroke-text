@@ -4,12 +4,12 @@
   "description": "React Native Stroke/Outline Text",
   "main": "build/index.js",
   "source": "./src/",
-  "author": "Charmy Inc. (https://github.com/charmy)",
+  "author": "Aditya Krishnan (https://github.com/adityakrshnn)",
   "license": "MIT",
-  "homepage": "https://github.com/charmy/react-native-stroke-text#readme",
-  "repository": "https://github.com/charmy/react-native-stroke-text",
+  "homepage": "https://github.com/adityakrshnn/react-native-stroke-text#readme",
+  "repository": "https://github.com/adityakrshnn/react-native-stroke-text",
   "bugs": {
-    "url": "https://github.com/charmy/react-native-stroke-text"
+    "url": "https://github.com/adityakrshnn/react-native-stroke-text"
   },
   "keywords": [
     "react-native",
