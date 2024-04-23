@@ -130,7 +130,7 @@ class StrokeTextView: RCTView {
     @objc var offsetX: NSNumber = 0 {
         didSet {
             if offsetX != oldValue {
-                label.offsetX = Int(truncating: offsetX)
+                label.offsetX = CGFloat(truncating: offsetX)
                 label.setNeedsDisplay()
             }
         }
@@ -139,7 +139,7 @@ class StrokeTextView: RCTView {
     @objc var offsetY: NSNumber = 0 {
         didSet {
             if offsetY != oldValue {
-                label.offsetY = Int(truncating: offsetY)
+                label.offsetY = CGFloat(truncating: offsetY)
                 label.setNeedsDisplay()
             }
         }
@@ -148,7 +148,7 @@ class StrokeTextView: RCTView {
     @objc var contentPaddingX: NSNumber = 0 {
         didSet {
             if contentPaddingX != oldValue {
-                label.contentPaddingX = Int(truncating: contentPaddingX)
+                label.contentPaddingX = CGFloat(truncating: contentPaddingX)
                 label.setNeedsDisplay()
             }
         }
@@ -157,7 +157,7 @@ class StrokeTextView: RCTView {
     @objc var contentPaddingY: NSNumber = 0 {
         didSet {
             if contentPaddingY != oldValue {
-                label.contentPaddingY = Int(truncating: contentPaddingY)
+                label.contentPaddingY = CGFloat(truncating: contentPaddingY)
                 label.setNeedsDisplay()
             }
         }
