@@ -16,6 +16,10 @@ export interface StrokeTextProps {
   align?: TextAlign;
   numberOfLines?: number;
   ellipsis?: boolean;
+  contentPaddingX?: number;
+  contentPaddingY?: number;
+  offsetX?: number;
+  offsetY?: number;
 }
 
 const NativeStrokeText = requireNativeComponent<StrokeTextProps>(ComponentName);

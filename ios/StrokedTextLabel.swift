@@ -21,6 +21,10 @@ class StrokedTextLabel: UILabel {
     var align: NSTextAlignment = .center
     var customWidth: CGFloat = 0
     var ellipsis: Bool = false
+    var contentPaddingX: CGFloat = 0
+    var contentPaddingY: CGFloat = 0
+    var offsetX: CGFloat = 0
+    var offsetY: CGFloat = 0
 
 
     override func drawText(in rect: CGRect) {
@@ -29,7 +33,7 @@ class StrokedTextLabel: UILabel {
 
         self.lineBreakMode = ellipsis ? .byTruncatingTail : .byWordWrapping
 
-        let adjustedRect = rect.inset(by: textInsets)
+        let adjustedRect = rect.offsetBy(dx: offsetX, dy: offsetY)
 
         let context = UIGraphicsGetCurrentContext()
         context?.setLineWidth(outlineWidth)
@@ -53,10 +57,11 @@ class StrokedTextLabel: UILabel {
         if customWidth > 0 {
             contentSize.width = customWidth
         } else {
-            contentSize.width += outlineWidth
+            contentSize.width += contentPaddingX
         }
 
-        contentSize.height += outlineWidth
+        contentSize.height += contentPaddingY
+
         return contentSize
     }
 }

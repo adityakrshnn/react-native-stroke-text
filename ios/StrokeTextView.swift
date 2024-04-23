@@ -127,6 +127,42 @@ class StrokeTextView: RCTView {
         }
     }
 
+    @objc var offsetX: NSNumber = 0 {
+        didSet {
+            if offsetX != oldValue {
+                label.offsetX = Int(truncating: offsetX)
+                label.setNeedsDisplay()
+            }
+        }
+    }
+
+    @objc var offsetY: NSNumber = 0 {
+        didSet {
+            if offsetY != oldValue {
+                label.offsetY = Int(truncating: offsetY)
+                label.setNeedsDisplay()
+            }
+        }
+    }
+
+    @objc var contentPaddingX: NSNumber = 0 {
+        didSet {
+            if contentPaddingX != oldValue {
+                label.contentPaddingX = Int(truncating: contentPaddingX)
+                label.setNeedsDisplay()
+            }
+        }
+    }
+
+    @objc var contentPaddingY: NSNumber = 0 {
+        didSet {
+            if contentPaddingY != oldValue {
+                label.contentPaddingY = Int(truncating: contentPaddingY)
+                label.setNeedsDisplay()
+            }
+        }
+    }
+
     private func colorStringToUIColor(colorString: String) -> UIColor {
         var string = colorString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
