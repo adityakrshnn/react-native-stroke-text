@@ -68,4 +68,24 @@ public class StrokeTextViewManager extends SimpleViewManager<View> {
     public void setWidth(StrokeTextView view, float width) {
         view.setCustomWidth(width);
     }
+
+    @ReactProp(name = "contentPaddingX")
+    public void setContentPaddingX(StrokeTextView view, float contentPaddingX) {
+        view.setContentPaddingX(contentPaddingX);
+    }
+
+    @ReactProp(name = "contentPaddingY")
+    public void setContentPaddingY(StrokeTextView view, float contentPaddingY) {
+        view.setContentPaddingY(contentPaddingY);
+    }
+
+    @ReactProp(name = "offsetX")
+    public void setOffsetX(StrokeTextView view, float offsetX) {
+        view.setOffsetX(offsetX);
+    }
+
+    @ReactProp(name = "offsetY")
+    public void setOffsetY(StrokeTextView view, float offsetY) {
+        view.setOffsetY(offsetY);
+    }
 }

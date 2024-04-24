@@ -31,6 +31,10 @@ class StrokeTextView extends View {
     private StaticLayout strokeLayout;
     private boolean layoutDirty = true;
     private float customWidth = 0;
+    private float contentPaddingX = 0;
+    private float contentPaddingY = 0;
+    private float offsetX = 0;
+    private float offsetY = 0;
 
     public StrokeTextView(ThemedReactContext context) {
         super(context);
@@ -84,13 +88,14 @@ class StrokeTextView extends View {
             }
         }
 
-        maxLineWidth += getScaledSize(strokeWidth) / 2;
+        maxLineWidth += getScaledSize(contentPaddingX);
         return maxLineWidth;
     }
 
 
     @Override
     protected void onDraw(Canvas canvas) {
+        canvas.translate(offsetX, offsetY);
         super.onDraw(canvas);
         ensureLayout();
         strokeLayout.draw(canvas);
@@ -201,6 +206,38 @@ class StrokeTextView extends View {
     public void setCustomWidth(float width) {
         if (!(this.customWidth == width)) {
             this.customWidth = width;
+            layoutDirty = true;
+            invalidate();
+        }
+    }
+
+    public void setContentPaddingX(float contentPaddingX) {
+        if (!(this.contentPaddingX == contentPaddingX)) {
+            this.contentPaddingX = contentPaddingX;
+            layoutDirty = true;
+            invalidate();
+        }
+    }
+
+    public void setContentPaddingY(float contentPaddingY) {
+        if (!(this.contentPaddingY == contentPaddingY)) {
+            this.contentPaddingY = contentPaddingY;
+            layoutDirty = true;
+            invalidate();
+        }
+    }
+
+    public void setOffsetX(float offsetX) {
+        if (!(this.offsetX == offsetX)) {
+            this.offsetX = offsetX;
+            layoutDirty = true;
+            invalidate();
+        }
+    }
+
+    public void setOffsetY(float offsetY) {
+        if (!(this.offsetY == offsetY)) {
+            this.offsetY = offsetY;
             layoutDirty = true;
             invalidate();
         }
