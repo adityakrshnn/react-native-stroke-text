@@ -9,7 +9,7 @@ export interface StrokeTextProps {
   width?: number;
   text: string;
   fontSize?: number;
-  color?: string;
+  textColor?: string;
   strokeColor?: string;
   strokeWidth?: number;
   fontFamily?: string;

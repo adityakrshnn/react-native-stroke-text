@@ -29,9 +29,9 @@ public class StrokeTextViewManager extends SimpleViewManager<View> {
         view.setFontSize(fontSize);
     }
 
-    @ReactProp(name = "color")
-    public void setColor(StrokeTextView view, String color) {
-        view.setTextColor(color);
+    @ReactProp(name = "textColor")
+    public void setTextColor(StrokeTextView view, String textColor) {
+        view.setTextColor(textColor);
     }
 
     @ReactProp(name = "strokeColor")

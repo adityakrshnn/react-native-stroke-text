@@ -55,10 +55,10 @@ class StrokeTextView: RCTView {
         }
     }
 
-    @objc var color: String = "#000000" {
+    @objc var textColor: String = "#000000" {
         didSet {
-            if color != oldValue {
-                label.textColor = colorStringToUIColor(colorString: color)
+            if textColor != oldValue {
+                label.textColor = colorStringToUIColor(colorString: textColor)
                 label.setNeedsDisplay()
             }
         }
