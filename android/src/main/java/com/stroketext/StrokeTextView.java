@@ -35,6 +35,10 @@ class StrokeTextView extends View {
     private float contentPaddingY = 0;
     private float offsetX = 0;
     private float offsetY = 0;
+    private float textShadowOffsetX = 0;
+    private float textShadowOffsetY = 0;
+    private float textShadowRadius = 0;
+    private int textShadowColor = 0xFF000000;
 
     public StrokeTextView(ThemedReactContext context) {
         super(context);
@@ -98,6 +102,7 @@ class StrokeTextView extends View {
         canvas.translate(offsetX, offsetY);
         super.onDraw(canvas);
         ensureLayout();
+        textPaint.setShadowLayer(textShadowRadius + 1, textShadowOffsetX, textShadowOffsetY, textShadowColor);
         strokeLayout.draw(canvas);
         textLayout.draw(canvas);
         updateSize(textLayout.getWidth(), textLayout.getHeight());
@@ -238,6 +243,39 @@ class StrokeTextView extends View {
     public void setOffsetY(float offsetY) {
         if (!(this.offsetY == offsetY)) {
             this.offsetY = offsetY;
+            layoutDirty = true;
+            invalidate();
+        }
+    }
+
+    public void setTextShadowOffsetX(float offsetX) {
+        if (!(this.textShadowOffsetX == offsetX)) {
+            this.textShadowOffsetX = offsetX;
+            layoutDirty = true;
+            invalidate();
+        }
+    }
+
+    public void setTextShadowOffsetY(float offsetY) {
+        if (!(this.textShadowOffsetY == offsetY)) {
+            this.textShadowOffsetY = offsetY;
+            layoutDirty = true;
+            invalidate();
+        }
+    }
+
+    public void setTextShadowRadius(float radius) {
+        if (!(this.textShadowRadius == radius)) {
+            this.textShadowRadius = radius;
+            layoutDirty = true;
+            invalidate();
+        }
+    }
+
+    public void setTextShadowColor(String color) {
+        int parsedColor = parseColor(color);
+        if (this.textShadowColor != parsedColor) {
+            this.textShadowColor = parsedColor;
             layoutDirty = true;
             invalidate();
         }
