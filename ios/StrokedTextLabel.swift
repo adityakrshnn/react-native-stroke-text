@@ -8,6 +8,7 @@ class StrokedTextLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.numberOfLines = 0
+        self.layer.masksToBounds = false
     }
 
     private var textInsets: UIEdgeInsets = .zero
@@ -25,6 +26,11 @@ class StrokedTextLabel: UILabel {
     var contentPaddingY: CGFloat = 0
     var offsetX: CGFloat = 0
     var offsetY: CGFloat = 0
+    var textShadowColor: UIColor = .clear
+    var textShadowRadius: CGFloat = 0
+    var textShadowOffsetX: CGFloat = 0
+    var textShadowOffsetY: CGFloat = 0
+
 
 
     override func drawText(in rect: CGRect) {
@@ -49,7 +55,11 @@ class StrokedTextLabel: UILabel {
         self.shadowOffset = CGSize(width: 0, height: 0)
         super.drawText(in: adjustedRect)
 
-        self.shadowOffset = shadowOffset
+        self.layer.shadowColor = textShadowColor.cgColor
+        self.layer.shadowRadius = textShadowRadius
+        self.layer.shadowOpacity = Float(1.0)
+        self.layer.shadowOffset = CGSize(width: textShadowOffsetX, height: textShadowOffsetY)
+
     }
 
     override var intrinsicContentSize: CGSize {
