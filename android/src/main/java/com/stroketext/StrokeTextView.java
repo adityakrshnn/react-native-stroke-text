@@ -26,9 +26,11 @@ class StrokeTextView extends View {
     private boolean ellipsis = false;
     private final TextPaint textPaint;
     private final TextPaint strokePaint;
+    private final TextPaint shadowPaint;
     private Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
     private StaticLayout textLayout;
     private StaticLayout strokeLayout;
+    private StaticLayout shadowLayout;
     private boolean layoutDirty = true;
     private float customWidth = 0;
     private float contentPaddingX = 0;
@@ -44,19 +46,30 @@ class StrokeTextView extends View {
         super(context);
         textPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         strokePaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
+        shadowPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
     }
 
     private void ensureLayout() {
         if (layoutDirty) {
             Typeface typeface = FontUtil.getFontFromAssets(getContext(), fontFamily);
-            textPaint.setTypeface(typeface);
-            textPaint.setTextSize(fontSize);
-            textPaint.setColor(textColor);
+            shadowPaint.setTypeface(typeface);
+            shadowPaint.setTextSize(fontSize);
+            shadowPaint.setColor(textShadowColor);
+            shadowPaint.setStyle(Paint.Style.FILL);
+            shadowPaint.setShadowLayer(textShadowRadius + 1, textShadowOffsetX, textShadowOffsetY, textShadowColor);
+
             strokePaint.setStyle(Paint.Style.STROKE);
             strokePaint.setStrokeWidth(strokeWidth);
             strokePaint.setColor(strokeColor);
             strokePaint.setTypeface(typeface);
             strokePaint.setTextSize(fontSize);
+            strokePaint.setStrokeJoin(Paint.Join.ROUND);
+            strokePaint.setStrokeCap(Paint.Cap.ROUND);
+            strokePaint.setShadowLayer(textShadowRadius + 1, textShadowOffsetX, textShadowOffsetY, textShadowColor);
+
+            textPaint.setTypeface(typeface);
+            textPaint.setTextSize(fontSize);
+            textPaint.setColor(textColor);
 
             int width = (int) getCanvasWidth();
             CharSequence ellipsizedText = ellipsis ? TextUtils.ellipsize(text, textPaint, width, TextUtils.TruncateAt.END) : text;
@@ -67,6 +80,7 @@ class StrokeTextView extends View {
                 textLayout = new StaticLayout(ellipsizedText, textPaint, width, alignment, 1.0f, 0.0f, false);
             }
             strokeLayout = new StaticLayout(ellipsizedText, strokePaint, width, alignment, 1.0f, 0.0f, false);
+            shadowLayout = new StaticLayout(ellipsizedText, shadowPaint, width, alignment, 1.0f, 0.0f, false);
 
             layoutDirty = false;
         }
@@ -102,8 +116,12 @@ class StrokeTextView extends View {
         canvas.translate(offsetX, offsetY);
         super.onDraw(canvas);
         ensureLayout();
-        strokePaint.setShadowLayer(textShadowRadius + 1, textShadowOffsetX, textShadowOffsetY, textShadowColor);
-        strokeLayout.draw(canvas);
+        shadowLayout.draw(canvas);
+
+        if (strokeWidth > 0) {
+            strokeLayout.draw(canvas);
+        }
+
         textLayout.draw(canvas);
         updateSize(textLayout.getWidth(), textLayout.getHeight());
     }
