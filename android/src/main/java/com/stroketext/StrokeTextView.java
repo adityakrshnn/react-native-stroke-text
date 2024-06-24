@@ -102,7 +102,7 @@ class StrokeTextView extends View {
         canvas.translate(offsetX, offsetY);
         super.onDraw(canvas);
         ensureLayout();
-        textPaint.setShadowLayer(textShadowRadius + 1, textShadowOffsetX, textShadowOffsetY, textShadowColor);
+        strokePaint.setShadowLayer(textShadowRadius + 1, textShadowOffsetX, textShadowOffsetY, textShadowColor);
         strokeLayout.draw(canvas);
         textLayout.draw(canvas);
         updateSize(textLayout.getWidth(), textLayout.getHeight());
