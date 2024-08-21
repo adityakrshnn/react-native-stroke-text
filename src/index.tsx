@@ -20,7 +20,7 @@ export interface StrokeTextProps {
   contentPaddingY?: number;
   offsetX?: number;
   offsetY?: number;
-  textShadowColor?: string;
+  tShadowColor?: string;
   textShadowOffsetX?: number;
   textShadowOffsetY?: number;
   textShadowRadius?: number;

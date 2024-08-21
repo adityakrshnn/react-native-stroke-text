@@ -190,10 +190,10 @@ class StrokeTextView: RCTView {
         }
     }
 
-    @objc var textShadowColor: String = "#000000" {
+    @objc var tShadowColor: String = "#000000" {
         didSet {
-            if textShadowColor != oldValue {
-                label.textShadowColor = colorStringToUIColor(colorString: textShadowColor)
+            if tShadowColor != oldValue {
+                label.tShadowColor = colorStringToUIColor(colorString: tShadowColor)
                 label.setNeedsDisplay()
             }
         }
@@ -210,24 +210,27 @@ class StrokeTextView: RCTView {
                 var rgbValue: UInt64 = 0
                 Scanner(string: String(string.dropFirst())).scanHexInt64(&rgbValue)
                 return UIColor(
-                        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-                        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-                        blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-                        alpha: 1.0
+                    red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+                    green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+                    blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+                    alpha: 1.0
                 )
             }
         } else if string.hasPrefix("RGBA") {
+            // Remove "RGBA(" and ")"
             let components = string.dropFirst(5).dropLast(1).split(separator: ",").map { CGFloat(Double($0.trimmingCharacters(in: .whitespaces)) ?? 0) }
             if components.count == 4 {
                 return UIColor(red: components[0] / 255.0, green: components[1] / 255.0, blue: components[2] / 255.0, alpha: components[3])
             }
         } else if string.hasPrefix("RGB") {
+            // Remove "RGB(" and ")"
             let components = string.dropFirst(4).dropLast(1).split(separator: ",").map { CGFloat(Double($0.trimmingCharacters(in: .whitespaces)) ?? 0) }
             if components.count == 3 {
                 return UIColor(red: components[0] / 255.0, green: components[1] / 255.0, blue: components[2] / 255.0, alpha: 1.0)
             }
         }
 
+        // Default color in case parsing fails
         return UIColor.gray
     }
 }

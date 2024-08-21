@@ -26,7 +26,7 @@ class StrokedTextLabel: UILabel {
     var contentPaddingY: CGFloat = 0
     var offsetX: CGFloat = 0
     var offsetY: CGFloat = 0
-    var textShadowColor: UIColor = .clear
+    var tShadowColor: UIColor = .clear
     var textShadowRadius: CGFloat = 0
     var textShadowOffsetX: CGFloat = 0
     var textShadowOffsetY: CGFloat = 0
@@ -55,7 +55,7 @@ class StrokedTextLabel: UILabel {
         self.shadowOffset = CGSize(width: 0, height: 0)
         super.drawText(in: adjustedRect)
 
-        self.layer.shadowColor = textShadowColor.cgColor
+        self.layer.shadowColor = tShadowColor.cgColor
         self.layer.shadowRadius = textShadowRadius
         self.layer.shadowOpacity = Float(1.0)
         self.layer.shadowOffset = CGSize(width: textShadowOffsetX, height: textShadowOffsetY)

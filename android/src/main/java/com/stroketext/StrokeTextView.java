@@ -40,7 +40,7 @@ class StrokeTextView extends View {
     private float textShadowOffsetX = 0;
     private float textShadowOffsetY = 0;
     private float textShadowRadius = 0;
-    private int textShadowColor = 0xFF000000;
+    private int tShadowColor = 0xFF000000;
 
     public StrokeTextView(ThemedReactContext context) {
         super(context);
@@ -54,9 +54,9 @@ class StrokeTextView extends View {
             Typeface typeface = FontUtil.getFontFromAssets(getContext(), fontFamily);
             shadowPaint.setTypeface(typeface);
             shadowPaint.setTextSize(fontSize);
-            shadowPaint.setColor(textShadowColor);
+            shadowPaint.setColor(textColor);
             shadowPaint.setStyle(Paint.Style.FILL);
-            shadowPaint.setShadowLayer(textShadowRadius + 1, textShadowOffsetX, textShadowOffsetY, textShadowColor);
+            shadowPaint.setShadowLayer(textShadowRadius + 1, textShadowOffsetX, textShadowOffsetY, tShadowColor);
 
             strokePaint.setStyle(Paint.Style.STROKE);
             strokePaint.setStrokeWidth(strokeWidth);
@@ -65,7 +65,7 @@ class StrokeTextView extends View {
             strokePaint.setTextSize(fontSize);
             strokePaint.setStrokeJoin(Paint.Join.ROUND);
             strokePaint.setStrokeCap(Paint.Cap.ROUND);
-            strokePaint.setShadowLayer(textShadowRadius + 1, textShadowOffsetX, textShadowOffsetY, textShadowColor);
+            strokePaint.setShadowLayer(textShadowRadius + 1, textShadowOffsetX, textShadowOffsetY, tShadowColor);
 
             textPaint.setTypeface(typeface);
             textPaint.setTextSize(fontSize);
@@ -290,10 +290,10 @@ class StrokeTextView extends View {
         }
     }
 
-    public void setTextShadowColor(String color) {
+    public void setTShadowColor(String color) {
         int parsedColor = parseColor(color);
-        if (this.textShadowColor != parsedColor) {
-            this.textShadowColor = parsedColor;
+        if (this.tShadowColor != parsedColor) {
+            this.tShadowColor = parsedColor;
             layoutDirty = true;
             invalidate();
         }

@@ -99,9 +99,9 @@ public class StrokeTextViewManager extends SimpleViewManager<View> {
         view.setTextShadowOffsetY(textShadowOffsetY);
     }
 
-    @ReactProp(name = "textShadowColor")
-    public void setTextShadowColor(StrokeTextView view, String textShadowColor) {
-        view.setTextShadowColor(textShadowColor);
+    @ReactProp(name = "tShadowColor")
+    public void setTShadowColor(StrokeTextView view, String tShadowColor) {
+        view.setTShadowColor(tShadowColor);
     }
 
     @ReactProp(name = "textShadowRadius")
